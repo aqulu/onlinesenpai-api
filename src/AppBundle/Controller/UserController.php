@@ -5,12 +5,14 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserController extends JsonController
 {
     /**
      * @Route("/users", name="findusers")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function findAllUsers()
     {
