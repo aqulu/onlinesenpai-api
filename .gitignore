@@ -1,8 +1,11 @@
+*.cache
+*.log
 /web/bundles/
-/app/bootstrap.php.cache
-/app/cache/*
+/app/cache/
+/var/cache/
 /app/config/parameters.yml
-/app/logs/*
+/app/logs/
+/var/logs/
 /build/
 /vendor/
 /bin/
