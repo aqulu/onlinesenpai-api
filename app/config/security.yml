@@ -28,4 +28,4 @@ security:
 
   access_control:
     - { path: ^/, roles: ROLE_ADMIN, methods: [POST, PUT] }
-    #- { path: ^/users, roles: ROLE_ADMIN, methods: [GET] }
+    - { path: ^/users, roles: ROLE_ADMIN, methods: [GET, POST] }
