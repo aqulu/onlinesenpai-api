@@ -73,6 +73,11 @@ class User implements UserInterface
   */
   private $authkeys;
 
+  public function getId()
+  {
+    return $this->id;
+  }
+
   public function getAuthKeys()
   {
     return $this->authkeys;

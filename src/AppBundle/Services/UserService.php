@@ -48,9 +48,13 @@ class UserService {
 
   public function updateUser($id, $user)
   {
-    // TODO load user and do stuff
-    // $this->em->persist($user);
-    // $this->em->flush();
+    if ($user != null && $id == $user->getId())
+    {
+      $entity = $this->em->merge($user);
+      $this->em->persist($entity);
+      $this->em->flush();
+      return $entity;
+    }
+    return null;
   }
-
 }

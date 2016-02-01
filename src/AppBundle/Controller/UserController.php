@@ -12,7 +12,6 @@ class UserController extends JsonController
     /**
      * @Route("/users", name="findusers")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
      */
     public function findAllUsers()
     {
@@ -33,7 +32,6 @@ class UserController extends JsonController
       if ($user != null)
       {
         $userService = $this->get("app.user_service");
-        // TODO save associated entities as well (Grade)
         $userService->saveUser($user);
       }
     }
@@ -41,15 +39,20 @@ class UserController extends JsonController
     /**
      * @Route("/users/{id}", name="updateuser")
      * @Method("PUT")
+     * @Security("has_role('ROLE_ADMIN') or user.getId() == id")
      */
     public function updateUser($id, Request $request)
     {
       $data = $request->getContent();
       $user = $this->deserialize($data, 'AppBundle\Entity\User');
+
+      $result = null;
+
       if ($user != null)
       {
         $userService = $this->get("app.user_service");
-        $userService->updateUser($id, $user);
+        $result = $userService->updateUser($id, $user);
       }
+      return $this->jsonResponse($result, ($result != null) ? 200 : 406);
     }
 }
