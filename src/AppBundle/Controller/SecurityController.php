@@ -20,12 +20,12 @@ class SecurityController extends JsonController
       {
         $userService = $this->get("app.user_service");
         $user = $userService->login($content->mail, $content->password);
-
-        // TODO anders an key kommen
-        return $this->jsonResponse(array(
-          "token" => $user->getAuthKeys()->first(),
-          "user" => $user
-        ));
+        if ($user != null) {
+          return $this->jsonResponse(array(
+            "token" => $user->getAuthKeys()->first(),
+            "user" => $user
+          ));
+        }
       }
 
       return $this->jsonResponse(array("message" => "login failed!"), 401 );
