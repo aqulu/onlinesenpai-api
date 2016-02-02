@@ -26,7 +26,7 @@ CREATE TABLE `users` (
   firstname VARCHAR(25) NOT NULL,
   lastname VARCHAR(50) NOT NULL,
   mail VARCHAR(100) NOT NULL,
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   instructor BOOLEAN NOT NULL,
   grade_id INT NULL,
   FOREIGN KEY(grade_id) REFERENCES grades(id)
