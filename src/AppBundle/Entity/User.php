@@ -91,7 +91,6 @@ class User implements UserInterface
     }
 
     $this->authkeys->add(new AuthKey($key, $this));
-
     if ($this->authkeys->count() > 5)
     {
       $this->authkeys = $this->authkeys->slice(0, 5);
@@ -111,6 +110,14 @@ class User implements UserInterface
   public function setPassword($password)
   {
     $this->password = $password;
+  }
+
+  /**
+  * creates hash from cleartext password parameter using php password_hash function
+  */
+  public function updatePassword($password)
+  {
+    $this->password = password_hash($password, PASSWORD_DEFAULT);
   }
 
   // IFC Implementations
@@ -138,6 +145,5 @@ class User implements UserInterface
   }
 
   public function eraseCredentials()
-  {
-  }
+  {   }
 }
