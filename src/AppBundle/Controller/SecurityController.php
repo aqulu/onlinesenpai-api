@@ -16,7 +16,7 @@ class SecurityController extends JsonController
     {
       $content = json_decode($request->getContent());
 
-      if ($content->mail != null && $content->password != null)
+      if ($content->mail && $content->password)
       {
         $userService = $this->get("app.user_service");
         $user = $userService->login($content->mail, $content->password);
@@ -29,5 +29,27 @@ class SecurityController extends JsonController
       }
 
       return $this->jsonResponse(array("message" => "login failed!"), 401 );
+    }
+    
+    /**
+     * @Route("/signup", name="signup")
+     * @Method("PUT")
+     */
+    public function signup(Request $request)
+    {
+      $userService = $this->get("app.user_service");
+      $content = json_decode($request->getContent());
+      $token = $request->headers->get('X-AUTH-TOKEN');
+      
+      if ($token && $content->password) 
+      {
+        $user = $userService->signup($token, $content->password);
+        return $this->jsonResponse(array(
+            "token" => $user->getAuthKeys()->first(),
+            "user" => $user
+        ));
+      }
+      
+      return $this->jsonResponse(array("message" => "signup failed!"), 401 );
     }
 }
