@@ -29,11 +29,14 @@ class UserController extends JsonController
     {
       $data = $request->getContent();
       $user = $this->deserialize($data, 'AppBundle\Entity\User');
-      if ($user != null)
+      
+      if ($user)
       {
         $userService = $this->get("app.user_service");
-        $userService->saveUser($user);
+        $result = $userService->saveUser($user);
       }
+      
+      return $this->jsonResponse($result, ($result) ? 200 : 406);
     }
 
     /**
@@ -46,13 +49,11 @@ class UserController extends JsonController
       $data = $request->getContent();
       $user = $this->deserialize($data, 'AppBundle\Entity\User');
 
-      $result = null;
-
-      if ($user != null)
+      if ($user)
       {
         $userService = $this->get("app.user_service");
         $result = $userService->updateUser($id, $user);
       }
-      return $this->jsonResponse($result, ($result != null) ? 200 : 406);
+      return $this->jsonResponse($result, ($result) ? 200 : 406);
     }
 }
