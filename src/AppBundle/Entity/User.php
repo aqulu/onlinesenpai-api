@@ -78,23 +78,44 @@ class User implements UserInterface
     return $this->id;
   }
 
-  public function getAuthKeys()
+  public function getFirstname()
   {
-    return $this->authkeys;
+    return $this->firstname;
   }
 
-  public function addAuthKey($key)
+  public function setFirstname($firstname)
   {
-    if (!$this->authkeys)
-    {
-      $this->authkeys = new ArrayCollection();
-    }
+    $this->firstname = $firstname;
+  }
 
-    $this->authkeys->add(new AuthKey($key, $this));
-    if ($this->authkeys->count() > 5)
-    {
-      $this->authkeys = $this->authkeys->slice(0, 5);
-    }
+  public function getLastname()
+  {
+    return $this->lastname;
+  }
+
+  public function setLastname($lastname)
+  {
+    $this->lastname = $lastname;
+  }
+
+  public function getMail()
+  {
+    return $this->mail;
+  }
+
+  public function setMail($mail)
+  {
+    $this->mail = $mail;
+  }
+
+  public function isInstructor()
+  {
+    return $this->instructor;
+  }
+
+  public function setInstructor($instructor)
+  {
+    $this->instructor = $instructor;
   }
 
   public function getGrade()
@@ -107,6 +128,25 @@ class User implements UserInterface
     $this->grade = $grade;
   }
 
+  public function getAuthKeys()
+  {
+    return $this->authkeys;
+  }
+
+  public function addAuthKey($key)
+  {
+    if (!$this->authkeys)
+      $this->authkeys = new ArrayCollection();
+
+    $this->authkeys->add(new AuthKey($key, $this));
+
+    if ($this->authkeys->count() > 5)
+      $this->authkeys = $this->authkeys->slice(0, 5);
+  }
+
+  /**
+  * sets password without applying hash function; use for already hashed passwords
+  */
   public function setPassword($password)
   {
     $this->password = $password;
