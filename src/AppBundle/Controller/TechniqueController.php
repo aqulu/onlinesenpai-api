@@ -13,11 +13,9 @@ class TechniqueController extends JsonController
      * @Route("/categories", name="categories")
      * @Method("GET")
      */
-    public function findAllCategories()
+    public function findCategories()
     {
-      $categories = $this->getDoctrine()
-                ->getRepository('AppBundle:Category')
-                ->findAll();
+      $categories = $this->get("app.technique_service")->findCategories();
       return $this->jsonResponse($categories);
     }
 
@@ -25,15 +23,9 @@ class TechniqueController extends JsonController
      * @Route("/categories/{id}/techniques", name="techniques")
      * @Method("GET")
      */
-    public function findTechniques($id)
+    public function findByCategory($id)
     {
-      if ($id)
-      {
-        $category = $this->getDoctrine()
-                        ->getRepository('AppBundle:Category')
-                        ->find($id);
-        return ($category != null) ? $this->jsonResponse($category->techniques) : null;
-      }
-      return null;
+      $techniques = $this->get("app.technique_service")->findByCategory($id);
+      return $this->jsonResponse($techniques);
     }
 }

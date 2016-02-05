@@ -7,6 +7,9 @@ services:
   app.user_service:
     class: AppBundle\Services\UserService
     arguments: ['@doctrine.orm.entity_manager']
+  app.technique_service:
+    class: AppBundle\Services\TechniqueService
+    arguments: ['@doctrine.orm.entity_manager']
   app.token_authenticator:
     class: AppBundle\Security\TokenAuthenticator
     arguments: ['@app.user_service']
