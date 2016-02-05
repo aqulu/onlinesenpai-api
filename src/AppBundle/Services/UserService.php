@@ -47,6 +47,11 @@ class UserService {
       return $user;
   }
 
+  public function findAll()
+  {
+    return $this->getRepository('AppBundle:User')->findAll();
+  }
+
   public function saveUser($user)
   {
     $grade = $this->em->getRepository('AppBundle:Grade')->find($user->getGrade()->getId());

@@ -15,9 +15,7 @@ class UserController extends JsonController
      */
     public function findAllUsers()
     {
-      $users = $this->getDoctrine()
-                ->getRepository('AppBundle:User')
-                ->findAll();
+      $users = $this->get("app.user_service")->findAll();
       return $this->jsonResponse($users);
     }
 
@@ -29,13 +27,10 @@ class UserController extends JsonController
     {
       $data = $request->getContent();
       $user = $this->deserialize($data, 'AppBundle\Entity\User');
-      
+
       if ($user)
-      {
-        $userService = $this->get("app.user_service");
-        $result = $userService->saveUser($user);
-      }
-      
+        $result = $this->get("app.user_service")->saveUser($user);
+
       return $this->jsonResponse($result, ($result) ? 200 : 406);
     }
 
@@ -50,10 +45,8 @@ class UserController extends JsonController
       $user = $this->deserialize($data, 'AppBundle\Entity\User');
 
       if ($user)
-      {
-        $userService = $this->get("app.user_service");
-        $result = $userService->updateUser($id, $user);
-      }
+        $result = $this->get("app.user_service")->updateUser($id, $user);
+
       return $this->jsonResponse($result, ($result) ? 200 : 406);
     }
 }
