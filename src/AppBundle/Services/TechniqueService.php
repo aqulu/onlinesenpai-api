@@ -23,4 +23,12 @@ class TechniqueService {
 
     return ($category) ? $category->getTechniques() : null;
   }
+
+  public function findByGrade($id)
+  {
+    if ($id)
+      $grade = $this->getRepository('AppBundle:Grade')->find($id);
+
+    return ($grade) ? $grade->getTechniques() : null;
+  }
 }

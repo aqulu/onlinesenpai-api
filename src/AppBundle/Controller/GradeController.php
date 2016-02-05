@@ -27,11 +27,9 @@ class GradeController extends JsonController
     * @Route("/grades/{id}/techniques", name="program")
     * @Method("GET")
     */
-    public function getProgramForTechnique($id)
+    public function findExaminationProgram($id)
     {
-      $grade = $this->getDoctrine()
-                ->getRepository('AppBundle:Grade')
-                ->find($id);
-      return $this->jsonResponse($grade->getTechniques());
+      $techniques = $this->get('app:technique_service')->findByGrade($id);
+      return $this->jsonResponse($techniques);
     }
 }
