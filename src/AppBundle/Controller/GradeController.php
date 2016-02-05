@@ -16,12 +16,9 @@ class GradeController extends JsonController
      */
     public function findAllGrades()
     {
-      $grades = $this->getDoctrine()
-                ->getRepository('AppBundle:Grade')
-                ->findAll();
+      $grades = $this->get('app:grade_service')->findAll();
       return $this->jsonResponse($grades);
     }
-
 
     /**
     * @Route("/grades/{id}/techniques", name="program")
@@ -29,7 +26,7 @@ class GradeController extends JsonController
     */
     public function findExaminationProgram($id)
     {
-      $techniques = $this->get('app:technique_service')->findByGrade($id);
+      $techniques = $this->get('app:grade_service')->findTechniques($id);
       return $this->jsonResponse($techniques);
     }
 }

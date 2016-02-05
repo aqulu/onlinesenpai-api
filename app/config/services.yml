@@ -7,8 +7,11 @@ services:
   app.user_service:
     class: AppBundle\Services\UserService
     arguments: ['@doctrine.orm.entity_manager']
-  app.technique_service:
-    class: AppBundle\Services\TechniqueService
+  app.category_service:
+    class: AppBundle\Services\CategoryService
+    arguments: ['@doctrine.orm.entity_manager']
+  app.grade_service:
+    class: AppBundle\Services\GradeService
     arguments: ['@doctrine.orm.entity_manager']
   app.token_authenticator:
     class: AppBundle\Security\TokenAuthenticator

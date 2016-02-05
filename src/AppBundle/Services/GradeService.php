@@ -3,7 +3,7 @@ namespace AppBundle\Services;
 
 use Doctrine\ORM\EntityManager;
 
-class CategoryService {
+class GradeService {
   private $em;
 
   public function __construct(EntityManager $em)
@@ -13,15 +13,14 @@ class CategoryService {
 
   public function findAll()
   {
-    return $this->getRepository('AppBundle:Category')->findAll();
+    return $this->getRepository('AppBundle:Grade')->findAll();
   }
 
   public function findTechniques($id)
   {
     if ($id)
-      $category = $this->getRepository('AppBundle:Category')->find($id);
+      $grade = $this->getRepository('AppBundle:Grade')->find($id);
 
-    return ($category) ? $category->getTechniques() : null;
+    return ($grade) ? $grade->getTechniques() : null;
   }
-
 }

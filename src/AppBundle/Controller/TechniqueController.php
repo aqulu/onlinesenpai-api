@@ -15,7 +15,7 @@ class TechniqueController extends JsonController
      */
     public function findCategories()
     {
-      $categories = $this->get("app.technique_service")->findCategories();
+      $categories = $this->get("app.category_service")->findAll();
       return $this->jsonResponse($categories);
     }
 
@@ -25,7 +25,7 @@ class TechniqueController extends JsonController
      */
     public function findByCategory($id)
     {
-      $techniques = $this->get("app.technique_service")->findByCategory($id);
+      $techniques = $this->get("app.category_service")->findTechniques($id);
       return $this->jsonResponse($techniques);
     }
 }
