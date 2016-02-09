@@ -15,17 +15,32 @@ class TechniqueController extends JsonController
      */
     public function findTechnique($id)
     {
-      return $this->jsonResponse(null);
+      $technique = $this->get("app.technique_service")->find($id);
+      return $this->jsonResponse($technique);
     }
 
     /**
-     * @Route("/categories/{id}/techniques", name="techniques")
-     * @Method("GET")
+     * @Route("/techniques/{id}", name="updateTechnique")
+     * @Method("PUT")
      */
-    public function findByCategory($id)
+    public function updateTechnique($id, Request $request)
     {
-      $techniques = $this->get("app.category_service")->findTechniques($id);
-      return $this->jsonResponse($techniques);
+      $technique = $this->deserialize($request->getContent(), 'AppBundle\Entity\Technique');
+      if ($technique)
+        $result = $this->get("app.technique_service")->updateTechnique($id, $technique);
+      return $this->jsonResponse($result, ($result) ? 201 : 406);
+    }
+
+    /**
+     * @Route("/techniques", name="createTechnique")
+     * @Method("POST")
+     */
+    public function createTechnique(Request $request)
+    {
+      $technique = $this->deserialize($request->getContent(), 'AppBundle\Entity\Technique');
+      if ($technique)
+        $result = $this->get("app.technique_service")->createTechnique($technique);
+      return $this->jsonResponse($result, ($result) ? 201 : 406);
     }
 
 }
