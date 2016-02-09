@@ -64,7 +64,7 @@ class UserService {
     $this->em->persist($user);
     $this->em->flush();
 
-    // todo: schedule registration mail leading to /signup/<token>
+    // TODO: schedule registration mail leading to /signup/<token>
     return $user;
   }
 
@@ -91,6 +91,8 @@ class UserService {
         $grade = $this->em->getRepository('AppBundle:Grade')->find($user->getGrade()->getId());
         $entity->setGrade($grade);
       }
+
+      // TODO: check permission & set instructor-flag
 
       $this->em->persist($entity);
       $this->em->flush();
