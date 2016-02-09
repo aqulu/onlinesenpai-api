@@ -31,7 +31,7 @@ class UserController extends JsonController
       if ($user)
         $result = $this->get("app.user_service")->saveUser($user);
 
-      return $this->jsonResponse($result, ($result) ? 200 : 406);
+      return $this->jsonResponse($result, ($result) ? 201 : 406);
     }
 
     /**
