@@ -13,13 +13,13 @@ class CategoryService {
 
   public function findAll()
   {
-    return $this->getRepository('AppBundle:Category')->findAll();
+    return $this->em->getRepository('AppBundle:Category')->findAll();
   }
 
   public function findTechniques($id)
   {
     if ($id)
-      $category = $this->getRepository('AppBundle:Category')->find($id);
+      $category = $this->em->getRepository('AppBundle:Category')->find($id);
 
     return ($category) ? $category->getTechniques() : null;
   }
