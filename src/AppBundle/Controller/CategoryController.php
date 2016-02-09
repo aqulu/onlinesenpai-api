@@ -28,4 +28,5 @@ class CategoryController extends JsonController
       $techniques = $this->get("app.category_service")->findTechniques($id);
       return $this->jsonResponse($techniques);
     }
+
 }
