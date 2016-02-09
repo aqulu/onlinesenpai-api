@@ -25,8 +25,7 @@ class UserController extends JsonController
      */
     public function createUser(Request $request)
     {
-      $data = $request->getContent();
-      $user = $this->deserialize($data, 'AppBundle\Entity\User');
+      $user = $this->deserialize($request->getContent(), 'AppBundle\Entity\User');
 
       if ($user)
         $result = $this->get("app.user_service")->saveUser($user);
@@ -41,8 +40,7 @@ class UserController extends JsonController
      */
     public function updateUser($id, Request $request)
     {
-      $data = $request->getContent();
-      $user = $this->deserialize($data, 'AppBundle\Entity\User');
+      $user = $this->deserialize($request->getContent(), 'AppBundle\Entity\User');
 
       if ($user)
         $result = $this->get("app.user_service")->updateUser($id, $user);
