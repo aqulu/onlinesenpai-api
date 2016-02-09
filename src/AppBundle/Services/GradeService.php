@@ -13,13 +13,13 @@ class GradeService {
 
   public function findAll()
   {
-    return $this->getRepository('AppBundle:Grade')->findAll();
+    return $this->em->getRepository('AppBundle:Grade')->findAll();
   }
 
   public function findTechniques($id)
   {
     if ($id)
-      $grade = $this->getRepository('AppBundle:Grade')->find($id);
+      $grade = $this->em->getRepository('AppBundle:Grade')->find($id);
 
     return ($grade) ? $grade->getTechniques() : null;
   }

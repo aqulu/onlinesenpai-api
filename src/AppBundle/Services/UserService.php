@@ -49,7 +49,7 @@ class UserService {
 
   public function findAll()
   {
-    return $this->getRepository('AppBundle:User')->findAll();
+    return $this->em->getRepository('AppBundle:User')->findAll();
   }
 
   public function saveUser($user)
