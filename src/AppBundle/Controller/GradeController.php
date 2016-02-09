@@ -16,7 +16,7 @@ class GradeController extends JsonController
      */
     public function findAllGrades()
     {
-      $grades = $this->get('app:grade_service')->findAll();
+      $grades = $this->get('app.grade_service')->findAll();
       return $this->jsonResponse($grades);
     }
 
@@ -26,7 +26,7 @@ class GradeController extends JsonController
     */
     public function findExaminationProgram($id)
     {
-      $techniques = $this->get('app:grade_service')->findTechniques($id);
+      $techniques = $this->get('app.grade_service')->findTechniques($id);
       return $this->jsonResponse($techniques);
     }
 }
