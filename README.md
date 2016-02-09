@@ -1,8 +1,10 @@
-# OnlineSenpai-API
+# onlinesenpai-api
 The backend component to the Dojo-management platform.
 
-The onlinesenpai projects aims to simplify examination-process of your students.
-It lets your students know, when their next exam is due and provides them with instructions and videos to the contents of the examination, in order to motivate them to practice by themselves.
+The onlinesenpai project aims to simplify examination-process for you and your students alike.
+It lets your students know, when their next exam is due and provides them with instructions and videos to the contents of the examination in order to motivate them to practice by themselves.
+
+This project is still under heavy development.
 
 ## Setup
 Prerequisites:
@@ -14,12 +16,12 @@ Prerequisites:
 Project-Setup:
 
     cd onlinesenpai-api
-    composer install // provide database-connection infos during installation-process
-    
+    composer install
+
 Database Initialization:
 
     run SQL-Commands from ./api/app/Resources/Scripts/setup.sql
-    
+
 ## Run the application
     cd onlinesenpai-api
     php ./bin/console server:run
