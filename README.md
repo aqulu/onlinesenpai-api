@@ -1,3 +1,7 @@
+# THIS PROJECT IS DEPRECATED AND IS BEING CONTINUED AS "DOJO-MANAGER"
+
+ * * *
+ 
 # onlinesenpai-api
 The backend component to the Dojo-management platform.
 
